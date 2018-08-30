@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Attribute GET Request Model",
+  "type": "object",
+  "required": [
+    "pathParameters",
+    "body"
+  ],
+  "properties": {
+    "pathParameters": {
+      "type": [
+        "object"
+      ],
+      "required": [
+        "profile-id"
+      ],
+      "properties": {
+        "profile-id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12}$"
+        }
+      }
+    },
+    "body": {
+      "type": [
+        "object" 
+      ],
+      "required": ["items"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "value"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": ["weight", "height"]
+              },
+              "value": {
+                "type": "string"
+              },
+              "units": {
+                "type": "string"
+              },
+              "userTimestamp": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
